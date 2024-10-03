@@ -1,0 +1,22 @@
+services:
+
+  backend:
+    pull_policy: never
+    build: ./backend/
+    container_name: fastapi-backend
+    ports:
+      - "8000:5000"
+
+  frontend:
+    pull_policy: never
+    container_name: nginx-frontend
+    image: "nginx:latest"
+    ports:
+      - "2000:80"
+
+  db:
+    pull_policy: never
+    container_name: postgre-db
+    image: "postgres:alpine3.20"
+    ports:
+      - "8001:5001"
