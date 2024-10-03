@@ -1,3 +1,4 @@
 # .dockerignore file
 tests/
 .venv/
+.env

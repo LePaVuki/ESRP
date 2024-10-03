@@ -1,23 +1,27 @@
 services:
 
   backend:
+    container_name: fastapi-backend
     pull_policy: never
     build: ./backend/
-    container_name: fastapi-backend
+    depends_on:
+      - db
     ports:
       - "8000:8000"
+    end_file:
+      - ./backend/.env
 
   frontend:
-    pull_policy: never
     container_name: nginx-frontend
-    image: "nginx:latest"
+    pull_policy: never
+    image: ./frontend
     ports:
       - "80:80"
 
   db:
+    container_name: postgre-db
     pull_policy: never
     restart: always
-    container_name: postgre-db
     build: ./db
     ports:
       - "8080:5432"

@@ -1,1 +1,1 @@
-FROM python:alpine3.20
+FROM nginx:latest
