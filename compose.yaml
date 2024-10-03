@@ -20,3 +20,8 @@ services:
     image: "postgres:alpine3.20"
     ports:
       - "8001:5001"
+    env_file:
+      - ./postgre/.env
+
+volumes:
+  postgredb-data:
