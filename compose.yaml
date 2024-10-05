@@ -9,7 +9,7 @@ services:
     ports:
       - ${APP_HOST_PORT}:8000
     env_file:
-      - ./backend/.env
+      - .env
 
   frontend:
     container_name: nginx-frontend
@@ -18,7 +18,7 @@ services:
     ports:
       - ${NGINX_HOST_PORT}:80
     env_file:
-      - ./frontend/.env
+      - .env
 
   db:
     container_name: postgre-db
@@ -28,7 +28,7 @@ services:
     ports:
       - ${DB_HOST_PORT}:5432
     env_file:
-      - ./db/.env
+      - .env
     volumes:
       - postgredb-data:/db/data
 
