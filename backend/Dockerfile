@@ -13,3 +13,4 @@ RUN pip install --no-cache-dir --upgrade -r requirements.txt
 # Copy in the source code
 COPY ./app app
 
+CMD "python", "app/database.py"

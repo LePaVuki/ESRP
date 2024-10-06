@@ -5,12 +5,15 @@ services:
     pull_policy: never
     build: ./backend/
     depends_on:
-      - db
+        db:
+          condition: service_healthy
+          restart: true
     ports:
       - ${APP_HOST_PORT}:8000
     env_file:
       - ./backend/.env
       - ./db/.env
+      - ./.env
 
   frontend:
     container_name: nginx-frontend
@@ -31,7 +34,13 @@ services:
     env_file:
       - ./db/.env
     volumes:
-      - postgredb-data:/db/data
+      - postgredb-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}"]
+      interval: 10s
+      retries: 5
+      start_period: 30s
+      timeout: 10s
 
 volumes:
   postgredb-data:
