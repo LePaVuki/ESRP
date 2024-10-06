@@ -1,3 +1,4 @@
+import os
 from typing import List
 from typing import Optional
 from sqlalchemy import create_engine
@@ -8,9 +9,14 @@ from sqlalchemy.orm import Mapped
 from sqlalchemy.orm import mapped_column
 from sqlalchemy.orm import relationship
 
+db_host = os.environ["DB_NAME"]
+db_port = int(os.environ["DB_PORT"])
+db_user = os.environ["POSTGRES_USER"]
+db_pass = os.environ["POSTGRES_PASSWORD"]
+db_name = os.environ["POSTGRES_DB"]
 
 # psycopg2 creating engine to connect to postgreSQL
-engine = create_engine("postgresql+psycopg2://${POSTGRES_USER}:${POSTGRES_PASSWORD}@localhost:${DB_HOST_PORT}/${POSTGRES_DB}", echo=True)
+engine = create_engine(f"postgresql+psycopg2://{db_user}:{db_pass}@{db_host}:{db_port}/{db_name}", echo=True)
 
 # declaring tables and metadata
 class Base(DeclarativeBase):

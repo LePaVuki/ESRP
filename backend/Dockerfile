@@ -8,9 +8,14 @@ WORKDIR /src
 
 # Install the application dependencies
 COPY requirements.txt requirements.txt
-RUN pip install --no-cache-dir --upgrade -r requirements.txt
+RUN python -m pip install -r requirements.txt --upgrade --no-cache-dir
+# apt-get -y update && \
+# apt-get install python3 postgresql-libs && \
+# apt-get install --virtual .build-deps gcc python3-dev musl-dev postgresql-dev && \
+# apt-get --purge del .build-deps && \
+# apt-get clean
 
 # Copy in the source code
 COPY ./app app
 
-CMD "python", "app/database.py"
+# CMD "python", "app/database.py"
