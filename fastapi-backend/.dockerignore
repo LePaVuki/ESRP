@@ -1,4 +1,4 @@
 # .dockerignore file
-tests/
 .venv/
 .env
+__pycache__

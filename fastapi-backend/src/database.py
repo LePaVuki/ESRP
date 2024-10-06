@@ -16,12 +16,18 @@ db_pass = os.environ["POSTGRES_PASSWORD"]
 db_name = os.environ["POSTGRES_DB"]
 
 # psycopg2 creating engine to connect to postgreSQL
-engine = create_engine(f"postgresql+psycopg2://{db_user}:{db_pass}@{db_host}:{db_port}/{db_name}", echo=True)
+engine = create_engine(
+    f"postgresql+psycopg2://{db_user}:{db_pass}@{db_host}:{db_port}/{db_name}",
+    echo=True,
+)
 
-# declaring tables and metadata
+
+# Declaring tables and metadata
 class Base(DeclarativeBase):
     pass
 
+
+# Star systems table
 class System(Base):
     __tablename__ = "systems"
 
@@ -35,6 +41,8 @@ class System(Base):
     def __repr__(self) -> str:
         return f"System(id={self.id!r}, name={self.name!r}, safety={self.safety!r})"
 
+
+# Constellation table
 class Constellation(Base):
     __tablename__ = "constellations"
 
@@ -49,6 +57,7 @@ class Constellation(Base):
         return f"Constellation(id={self.id!r}, name={self.name!r})"
 
 
+# Regions table
 class Region(Base):
     __tablename__ = "regions"
 
@@ -58,10 +67,12 @@ class Region(Base):
     constellations: Mapped["Constellation"] = relationship(back_populates="regions")
 
     def __repr__(self) -> str:
-         return f"Region(id={self.id!r}, name={self.name!r})"
+        return f"Region(id={self.id!r}, name={self.name!r})"
+
 
 def main():
-	Base.metadata.create_all(engine)
+    pass
 
-if __name__ == '__main__':
-	main()
+
+if __name__ == "__main__":
+    main()

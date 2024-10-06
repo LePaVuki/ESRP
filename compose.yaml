@@ -3,7 +3,7 @@ services:
   backend:
     container_name: fastapi-backend
     pull_policy: never
-    build: ./backend/
+    build: ./fastapi-backend/
     depends_on:
         db:
           condition: service_healthy

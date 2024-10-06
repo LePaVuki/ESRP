@@ -16,6 +16,6 @@ RUN python -m pip install -r requirements.txt --upgrade --no-cache-dir
 # apt-get clean
 
 # Copy in the source code
-COPY ./app app
+COPY ./src src
 
 # CMD "python", "app/database.py"
