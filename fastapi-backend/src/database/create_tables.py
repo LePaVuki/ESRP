@@ -1,5 +1,5 @@
-from database import engine
-from database import Base
+from orm import engine
+from orm import Base
 
 
 def main():

@@ -31,11 +31,13 @@ class Base(DeclarativeBase):
 class System(Base):
     __tablename__ = "systems"
 
+    # Declaring columns
     id: Mapped[int] = mapped_column(primary_key=True)
     name: Mapped[str] = mapped_column(String(30))
     safety: Mapped[str] = mapped_column(String(2))
     constellation_id: Mapped[int] = mapped_column(ForeignKey("constellations.id"))
 
+    # Declaring links <inside object>: Mapped ["<NameOfTheObject>"] = relationship(back_populates="<outer object>")
     constellations: Mapped["Constellation"] = relationship(back_populates="systems")
 
     def __repr__(self) -> str:
@@ -46,10 +48,12 @@ class System(Base):
 class Constellation(Base):
     __tablename__ = "constellations"
 
+    # Declaring columns
     id: Mapped[int] = mapped_column(primary_key=True)
     name: Mapped[str] = mapped_column(String(30))
     region_id: Mapped[int] = mapped_column(ForeignKey("regions.id"))
 
+    # Declaring links <inside object>: Mapped ["<NameOfTheObject>"] = relationship(back_populates="<outer object>")
     systems: Mapped["System"] = relationship(back_populates="constellations")
     regions: Mapped["Region"] = relationship(back_populates="constellations")
 
@@ -61,9 +65,11 @@ class Constellation(Base):
 class Region(Base):
     __tablename__ = "regions"
 
+    # Declaring columns
     id: Mapped[int] = mapped_column(primary_key=True)
     name: Mapped[str] = mapped_column(String(30))
 
+    # Declaring links <inside object>: Mapped ["<NameOfTheObject>"] = relationship(back_populates="<outer object>")
     constellations: Mapped["Constellation"] = relationship(back_populates="regions")
 
     def __repr__(self) -> str:
