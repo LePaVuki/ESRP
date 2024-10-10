@@ -17,6 +17,8 @@ EVE Safe Route Planner is a web application intended to use for route planning i
 
 ## How to build
 
+1. Create the .env file next to .env-template and fill the variables
+
 ## How to use
 
-Access to the app's capabilities is realised through the web interface.
+Access to the app's capabilities are realised through the web interface.
