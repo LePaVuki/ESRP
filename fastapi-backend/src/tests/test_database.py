@@ -1,7 +1,5 @@
 import unittest
-import src
-import src.initdb
-import src.initdb.initdb
+import src.database
 
 
 class TestDatabase(unittest.TestCase):

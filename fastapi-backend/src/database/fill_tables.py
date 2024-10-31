@@ -1,5 +1,5 @@
-from orm import engine
-from orm import Region
+from .orm import engine
+from .orm import Region
 from sqlalchemy.orm import Session
 
 
